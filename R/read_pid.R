@@ -6,7 +6,7 @@
 #'
 #' @return
 #' A data.frame, possibly with an attribute named \code{meta} containing the metadata as a named list; or the list of metadata directly, if only metadata is requested
-#' 
+#'
 #' @importFrom stringr str_replace_all str_detect str_split str_trim
 #' @export
 read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
@@ -42,7 +42,7 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
 
     # remove pseudo blank lines
     d <- d[d!=" "]
-    # get line number where the data table starts
+    # get line number where the data table now starts
     dataIdxWithoutBlanks <- which(str_detect(d, fixed("[Data]")))
 
     # read meta data in the header
@@ -73,7 +73,7 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
       }
     }
   }
-  
+
   if ( data ) {
     # when data is requested, return the data table
     out <- dt
@@ -85,6 +85,6 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
     # otherwise metadata only is requested and return the metadata list
     out <- m
   }
-  
+
   return(out)
 }

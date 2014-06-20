@@ -3,7 +3,7 @@
 \alias{read_pid}
 \title{Read dat1.pid or dat1.txt files}
 \usage{
-read_pid(file, data = TRUE, metadata = FALSE)
+read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{file}{path to a \code{dat1.pid} or \code{dat1.txt} file}

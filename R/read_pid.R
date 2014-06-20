@@ -9,7 +9,7 @@
 #' 
 #' @importFrom stringr str_replace_all str_detect str_split str_trim
 #' @export
-read_pid <- function(file, data=TRUE, metadata=FALSE) {
+read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
 
   if ( (! data) & (! metadata) ) {
     stop("Neither data nor metadata is requested. I'm left doing nothing...")
@@ -17,12 +17,14 @@ read_pid <- function(file, data=TRUE, metadata=FALSE) {
 
   # read every line as text
   d <- scan(file, what="character", skip=1, sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8")
+  if ( verbose ) { message("Detect file structure") }
 
   # get line number where the data table starts
   dataIdx <- which(str_detect(d, fixed("[Data]"))) + 1
   # NB: we skipped the first line in the scan() call above, so the line numbers in the file are those computed here + 1, hence the dataIdx+1
 
   if ( data ) {
+    if ( verbose ) { message("Read data") }
     # read data table
     dt <- read.table(file, skip=dataIdx+1, sep=";", header=T, as.is=T)
     names(dt)[1] <- "Item"
@@ -38,6 +40,8 @@ read_pid <- function(file, data=TRUE, metadata=FALSE) {
   }
 
   if ( metadata ) {
+    if ( verbose ) { message("Read metadata") }
+
     # remove pseudo blank lines
     d <- d[d!=" "]
     # get line number where the data table starts

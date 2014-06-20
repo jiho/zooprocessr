@@ -7,13 +7,15 @@
 #' }
 #'
 #' @param project path to the project directory
+#' @param ... passed to \code{\link{read_pid}}
 #' @export
-#' @import stringr plyr
+#' @importFrom stringr str_c str_replace fixed
+#' @importFrom plyr ldply
 read_pids_in_project <- function(project, ...) {
 
   # find pid and dat1 files in project
   # NB: one pid/dat1 per profile
-  pidFiles <- list.files(str_c(project, "/PID_process/Pid_results"), pattern="pid$", full=TRUE)
+  pidFiles <- list.files(str_c(project, "/PID_process/Pid_results"), pattern="pid$", full.names=TRUE)
 
   dat1Files <- str_replace(pidFiles, "pid$", "txt")
   dat1Files <- str_replace(dat1Files, fixed("/Pid_results/"), "/Pid_results/Dat1_validated/")
@@ -43,11 +45,11 @@ read_pids_in_project <- function(project, ...) {
 
 #' Read the learning set of a project
 #'
-#' Walk the hierachy of a zooprocess project and read the learning set file
+#' Walk the hierarchy of a zooprocess project and read the learning set file
 #'
 #' @param project path to the project directory
 #' @export
-#' @import stringr
+#' @importFrom stringr str_c
 read_learning_set_in_project <- function(project) {
 
   # list all learning set files

@@ -3,6 +3,7 @@
 #' @param file path to a \code{dat1.pid} or \code{dat1.txt} file
 #' @param data boolean, wether to extract the data table
 #' @param metadata boolean, wether to extract the metadata from the header
+#' @param verbose boolean, wether to inform the user about what is going on
 #'
 #' @return
 #' A data.frame, possibly with an attribute named \code{meta} containing the metadata as a named list; or the list of metadata directly, if only metadata is requested

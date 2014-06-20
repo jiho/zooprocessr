@@ -7,6 +7,8 @@ read_pids_in_project(project, ...)
 }
 \arguments{
 \item{project}{path to the project directory}
+
+\item{...}{passed to \code{\link{read_pid}}}
 }
 \description{
 Walk the hierarchy of a zooprocess project and read the pid + dat1.txt files for all records in the project merging the information in both

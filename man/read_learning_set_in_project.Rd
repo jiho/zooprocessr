@@ -9,6 +9,6 @@ read_learning_set_in_project(project)
 \item{project}{path to the project directory}
 }
 \description{
-Walk the hierachy of a zooprocess project and read the learning set file
+Walk the hierarchy of a zooprocess project and read the learning set file
 }
 

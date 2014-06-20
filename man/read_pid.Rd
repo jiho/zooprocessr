@@ -11,6 +11,8 @@ read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE)
 \item{data}{boolean, wether to extract the data table}
 
 \item{metadata}{boolean, wether to extract the metadata from the header}
+
+\item{verbose}{boolean, wether to inform the user about what is going on}
 }
 \value{
 A data.frame, possibly with an attribute named \code{meta} containing the metadata as a named list; or the list of metadata directly, if only metadata is requested

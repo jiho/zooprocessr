@@ -1,12 +1,14 @@
 Package: zooprocessr
 Title: Read and analyse data from zooprocess
-Description: 
+Description: Read and analyse data from zooprocess
 Version: 0.1
-Authors: Jean-Olivier Irisson <irisson@normalesup.org>
+Author: Jean-Olivier Irisson <irisson@normalesup.org>
 Maintainer: Jean-Olivier Irisson <irisson@normalesup.org>
 Depends:
     R (>= 3.0.2)
 License: GPL-3
 LazyData: true
 Roxygen: list(wrap = FALSE)
-Import: stringr
+Imports:
+    stringr,
+    plyr

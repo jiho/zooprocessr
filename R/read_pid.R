@@ -15,9 +15,9 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
     stop("Neither data nor metadata is requested. I'm left doing nothing...")
   }
 
-  # read every line as text
-  d <- scan(file, what="character", skip=1, sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8")
   if ( verbose ) { message("Detect file structure") }
+  # read the first 2000 lines as text
+  d <- scan(file, what="character", skip=1, sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8", n=2000)
 
   # get line number where the data table starts
   dataIdx <- which(str_detect(d, fixed("[Data]"))) + 1

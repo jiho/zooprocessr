@@ -1,6 +1,6 @@
 #' Read all .pid files in a project
 #'
-#' Walk the hierachy of a zooprocess project and read the pid + dat1.txt files for all records in the project merging the information in both
+#' Walk the hierarchy of a zooprocess project and read the pid + dat1.txt files for all records in the project merging the information in both
 #' \itemize{
 #'  \item pid = image characteristics
 #'  \item dat1 = identification
@@ -41,7 +41,7 @@ read_pids_in_project <- function(project, ...) {
   return(D)
 }
 
-#' Read all the learning set of a project
+#' Read the learning set of a project
 #'
 #' Walk the hierachy of a zooprocess project and read the learning set file
 #'

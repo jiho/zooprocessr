@@ -1,13 +1,13 @@
-#' Read .pid (or _dat1.txt) files
+#' Read dat1.pid or dat1.txt files
 #'
-#' @param file path to a \code{.pid} or \code{dat1.txt} file
+#' @param file path to a \code{dat1.pid} or \code{dat1.txt} file
 #' @param data boolean, wether to extract the data table
 #' @param metadata boolean, wether to extract the metadata from the header
 #'
 #' @return
-#' A data.frame, possibly with a meta attribute containing the metadata as a named list; or the list of metadata directly, if only this is requested
+#' A data.frame, possibly with an attribute named \code{meta} containing the metadata as a named list; or the list of metadata directly, if only metadata is requested
 #' 
-#' @importFrom stringr str_replace_all str_detect fixed
+#' @importFrom stringr str_replace_all
 #' @export
 read_pid <- function(file, data=TRUE, metadata=FALSE) {
 
@@ -84,5 +84,5 @@ read_pid <- function(file, data=TRUE, metadata=FALSE) {
     out <- m
   }
   
-  return(dt)
+  return(out)
 }

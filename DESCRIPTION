@@ -9,3 +9,4 @@ Depends:
 License: GPL-3
 LazyData: true
 Roxygen: list(wrap = FALSE)
+Import: stringr

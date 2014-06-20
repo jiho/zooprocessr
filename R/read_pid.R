@@ -7,7 +7,7 @@
 #' @return
 #' A data.frame, possibly with an attribute named \code{meta} containing the metadata as a named list; or the list of metadata directly, if only metadata is requested
 #' 
-#' @importFrom stringr str_replace_all
+#' @importFrom stringr str_replace_all str_detect str_split str_trim
 #' @export
 read_pid <- function(file, data=TRUE, metadata=FALSE) {
 

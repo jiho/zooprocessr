@@ -30,13 +30,11 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
     names(dt)[1] <- "Item"
     # TODO read from a text connection here and test wether this is faster
 
-    # make validation column name uniform
-    names <- names(dt)
-    names <- str_replace_all(names, "pred_valid_Id_", "Valid")
-    # force latest validation to have the name "Valid"
-    validationColumns <- which(str_detect(names, "Valid"))
-    names[max(validationColumns)] <- "Valid"
-    names(dt) <- names
+    # if there is/are validation(s) duplicate the latest validation in a column named "Valid"
+    hasValidation <- any(str_detect(names(dt), "pred_valid_Id_"))
+    if ( hasValidation ) {
+      dt$Valid <- dt[,ncol(dt)]
+    }
   }
 
   if ( metadata ) {

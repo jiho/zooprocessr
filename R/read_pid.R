@@ -27,7 +27,7 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
   if ( data ) {
     if ( verbose ) { message("Read data") }
     # read data table
-    dt <- read.table(file, skip=dataIdx+1, sep=";", header=T, as.is=T)
+    dt <- read.table(file, skip=dataIdx, sep=";", header=T, as.is=T)
     names(dt)[1] <- "Item"
     # TODO read from a text connection here and test wether this is faster
 

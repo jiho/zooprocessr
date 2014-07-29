@@ -56,12 +56,13 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
         # create a new sub-list
         count <- count+1
         m[[count]] <- list()
-        names(m)[count] <- str_replace_all(d[i], "\\[|\\]", "")
+        names(m)[count] <- tolower(str_replace_all(d[i], "\\[|\\]", ""))
       } else {
         # item is meta data with format 'name = value'
         # extract name and value
         line <- str_split(d[i], "=")[[1]]
-        metaName <- line[1]
+        metaName <- tolower(line[1])
+        # NB: switch to lowercase because some labels changed case in the history of Zooprocess
         metaData <- str_trim(line[2])
         # detect numbers with regular expressions
         if (!is.na(metaData)) {

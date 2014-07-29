@@ -35,7 +35,7 @@ read_variables <- function(project, verbose=TRUE, ...) {
 #' @param ... passed to \code{\link{read_pid}}
 #' @export
 #' @importFrom stringr str_c
-#' @importFrom plyr ldply laply
+#' @importFrom plyr ldply laply llply
 read_meta <- function(project, verbose=TRUE, ...) {
   # find pid files
   files <- list.files(str_c(project, "/PID_process/Pid_results/Pid_predicted"), pattern="pid$", full.names=TRUE)

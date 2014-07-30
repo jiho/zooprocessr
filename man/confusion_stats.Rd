@@ -6,15 +6,15 @@
 confusion_stats(x, sort.by = NULL)
 }
 \arguments{
-\item{x}{confusion matrix (table class with prediction as line and observations as columns), as returned by \code{confusion_matrix()}}
+\item{x}{confusion matrix (table class with predictions as line and validated, true classes as columns), as returned by \code{confusion_matrix()}}
 
-\item{sort.by}{column to sort the result by (usually "recall", "precision", or "F1")}
+\item{sort.by}{column to sort the result by (usually "recall", "precision", or "F1"); can be abbreviated}
 }
 \description{
 Compute confusion statistics (recall, precision, etc.)
 }
 \seealso{
-Other confusion.statistics.functions: \code{\link{autoplot.table}};
+Other confusion statistics functions: \code{\link{autoplot.table}};
   \code{\link{confusion_matrix}}
 }
 

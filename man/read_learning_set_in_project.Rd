@@ -9,6 +9,10 @@ read_learning_set_in_project(project)
 \item{project}{path to the project directory}
 }
 \description{
-Walk the hierarchy of a zooprocess project and read the learning set file
+Read the learning set of a project
+}
+\seealso{
+Other project data handling functions: \code{\link{read_ids}};
+  \code{\link{read_meta}}; \code{\link{read_variables}}
 }
 

@@ -8,11 +8,16 @@ read_meta(project, verbose = TRUE, ...)
 \arguments{
 \item{project}{path to the project directory}
 
-\item{verbose}{when TRUE, show progress if needed}
+\item{verbose}{when TRUE, show read progress (when there are many files to read)}
 
 \item{...}{passed to \code{\link{read_pid}}}
 }
 \description{
 Read the metadata for all samples in a project
+}
+\seealso{
+Other project data handling functions: \code{\link{read_ids}};
+  \code{\link{read_learning_set_in_project}};
+  \code{\link{read_variables}}
 }
 

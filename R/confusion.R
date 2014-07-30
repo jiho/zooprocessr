@@ -1,7 +1,7 @@
-#' Compute confusion matrix
+#' Compute a confusion matrix
 #'
-#' @param pred predicted categories
-#' @param valid true categories, after validation
+#' @param pred vector of predicted categories
+#' @param valid vector of true categories, after validation
 #'
 #' @family confusion statistics functions
 #'
@@ -19,11 +19,11 @@ confusion_matrix <- function(pred, valid) {
   return(t)
 }
 
-#' Plot a contingency table (i.e. confusion matrix) as a heatmap
+#' Plot a contingency table (i.e. confusion matrix) as a heat map
 #'
-#' @param object contingency table, returned by function table()
-#' @param norm normalisation method: "none", by row ("rows"), or by column ("columns"); can be abbreviated
-#' @param trans function used to transform the counts in the contingency table
+#' @param object contingency table, returned by function \code{table()} (or \code{\link{confusion_matrix}}) 
+#' @param norm normalisation method: "none", by row ("rows", to represent precision), or by column ("columns", to represent recall); can be abbreviated
+#' @param trans function used to transform the counts in the contingency table (such as \code{sqrt}, \code{log}, \code{log1p})
 #'
 #' @family confusion statistics functions
 #'
@@ -82,8 +82,8 @@ autoplot.table <- function(object, norm="none", trans=NULL) {
 
 #' Compute confusion statistics (recall, precision, etc.)
 #'
-#' @param x confusion matrix (table class with prediction as line and observations as columns), as returned by \code{confusion_matrix()}
-#' @param sort.by column to sort the result by (usually "recall", "precision", or "F1")
+#' @param x confusion matrix (table class with predictions as line and validated, true classes as columns), as returned by \code{confusion_matrix()}
+#' @param sort.by column to sort the result by (usually "recall", "precision", or "F1"); can be abbreviated
 #'
 #' @family confusion statistics functions
 #'

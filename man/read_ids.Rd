@@ -6,15 +6,19 @@
 read_ids(project, last = TRUE, verbose = TRUE, ...)
 }
 \arguments{
+\item{last}{when TRUE, only output the prediction and the last identification, called "Valid"; when FALSE, output all identifications (but still duplicate the last one and label it "Valid")}
+
 \item{project}{path to the project directory}
 
-\item{last}{when TRUE, only output the prediction and the last identification; when false, output all identifications (but still label the last one "Valid")}
-
-\item{verbose}{when TRUE, show progress if needed}
+\item{verbose}{when TRUE, show read progress (when there are many files to read)}
 
 \item{...}{passed to \code{\link{read_pid}}}
 }
 \description{
 Read the identifications of all objects in a project
+}
+\seealso{
+Other project data handling functions: \code{\link{read_learning_set_in_project}};
+  \code{\link{read_meta}}; \code{\link{read_variables}}
 }
 

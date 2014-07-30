@@ -1,8 +1,10 @@
 #' Read the descriptive variables of all objects in a project
 #'
 #' @param project path to the project directory
-#' @param verbose when TRUE, show progress if needed
+#' @param verbose when TRUE, show read progress (when there are many files to read)
 #' @param ... passed to \code{\link{read_pid}}
+#'
+#' @family project data handling functions
 #' @export
 #' @importFrom stringr str_c
 #' @importFrom plyr ldply
@@ -30,9 +32,9 @@ read_variables <- function(project, verbose=TRUE, ...) {
 
 #' Read the metadata for all samples in a project
 #'
-#' @param project path to the project directory
-#' @param verbose when TRUE, show progress if needed
-#' @param ... passed to \code{\link{read_pid}}
+#' @inheritParams read_variables
+#'
+#' @family project data handling functions
 #' @export
 #' @importFrom stringr str_c
 #' @importFrom plyr ldply laply llply
@@ -91,10 +93,10 @@ read_meta <- function(project, verbose=TRUE, ...) {
 
 #' Read the identifications of all objects in a project
 #'
-#' @param project path to the project directory
-#' @param last when TRUE, only output the prediction and the last identification; when false, output all identifications (but still label the last one "Valid")
-#' @param verbose when TRUE, show progress if needed
-#' @param ... passed to \code{\link{read_pid}}
+#' @inheritParams read_variables
+#' @param last when TRUE, only output the prediction and the last identification, called "Valid"; when FALSE, output all identifications (but still duplicate the last one and label it "Valid")
+#'
+#' @family project data handling functions
 #' @export
 #' @importFrom stringr str_c str_detect
 #' @importFrom plyr ldply
@@ -142,9 +144,9 @@ read_ids <- function(project, last=TRUE, verbose=TRUE, ...) {
 
 #' Read the learning set of a project
 #'
-#' Walk the hierarchy of a zooprocess project and read the learning set file
-#'
 #' @param project path to the project directory
+#'
+#' @family project data handling functions
 #' @export
 #' @importFrom stringr str_c
 read_learning_set_in_project <- function(project) {

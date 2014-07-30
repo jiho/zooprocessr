@@ -11,4 +11,5 @@ LazyData: true
 Roxygen: list(wrap = FALSE)
 Imports:
     stringr,
-    plyr
+    plyr,
+    ggplot2

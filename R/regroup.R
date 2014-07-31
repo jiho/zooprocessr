@@ -1,29 +1,37 @@
-#' Regroup some categories together
+#' Relabel categories, possibly regrouping them
 #'
 #' @param x vector of categories (usually the "Valid" column of the data.frame produced by \code{\link{read_ids}})
-#' @param matches a two columns data.frame or matrix with the old names in the first column and the new name in the second column; if some new names are equal, this effectively regroups the categories
+#' @param labels a two columns data.frame or matrix with the old names in the first column and the new name in the second column; if some new names are equal, this effectively regroups the categories
+#'
+#' @seealso \code{\link{regroup_taxa}}
 #' @examples
 #' x <- c("append_fritill", "append_housing", "crust_copepods_calanus", "crust_copepods_euchaeta", "crust_larvae", "append_fritill")
+#'
+#' # change labels
+#' labels <- data.frame(old=c("append_fritill", "append_housing"), new=c("larvacean_fritill", "larvacean_housing"))
+#' relabel(x, labels=labels)
+#' 
+#' # combine some groups (see regroup_taxa for a more generic way of doing this)
 #' grouping <- data.frame(old=c("append_fritill", "append_housing"), new="appendicularians")
 #' print(grouping)
-#' regroup(x, matches=grouping)
+#' relabel(x, labels=grouping)
 #' 
 #' @export
-regroup <- function(x, matches) {
-  dims <- dim(matches)
+relabel <- function(x, labels) {
+  dims <- dim(labels)
   if ( is.null(dims) | dims[2] != 2 ) {
-    stop("Need a two column data.frame or matrixas the matches argument")
+    stop("Need a two column data.frame or matrix as the `labels` argument")
   }
   
   # get where to find the new names of the element of x that need to be renamed
-  idxOfMatch <- match(x, matches[,1])
+  idxOfMatch <- match(x, labels[,1])
   
   # detect which elements of x need to be renamed
   idxToChange <- which(!is.na(idxOfMatch))
   
   # rename them
   # NB: be careful with factors
-  x[idxToChange] <- as.character(matches[idxOfMatch[idxToChange],2])
+  x[idxToChange] <- as.character(labels[idxOfMatch[idxToChange],2])
   
   # TODO check if we can do that by releveling factors, should be faster
 

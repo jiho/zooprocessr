@@ -20,7 +20,7 @@ First guess the type of project from its name. If the project is a UVP project, 
 \seealso{
 Other project data handling functions: \code{\link{read_ids}};
   \code{\link{read_learning_set_in_project}};
-  \code{\link{read_particles_profile}};
+  \code{\link{read_particles_profiles}};
   \code{\link{read_sample_meta}};
   \code{\link{read_variables}}
 }

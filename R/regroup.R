@@ -25,6 +25,7 @@ relabel <- function(x, labels) {
   
   # get where to find the new names of the element of x that need to be renamed
   idxOfMatch <- match(x, labels[,1])
+  # TODO implement the possibility of using a list rather than a data.frame as the labels argument
   
   # detect which elements of x need to be renamed
   idxToChange <- which(!is.na(idxOfMatch))

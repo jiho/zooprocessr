@@ -12,4 +12,6 @@ Roxygen: list(wrap = FALSE)
 Imports:
     stringr,
     plyr,
-    ggplot2
+    ggplot2,
+    assertthat,
+    lubridate

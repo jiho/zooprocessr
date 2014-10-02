@@ -91,8 +91,39 @@ smooth_particles_profiles <- function(x, n=21) {
     return(X)
   })
 
-
   return(x)
+}
+
+
+#' Bin UVP profiles over depth
+#'
+#' @param x a data.frame resulting from \code{\link{read_particles_profile}}, with one or several UVP profiles
+#' @param bin the size of the depth bin in m
+#'
+#' @details
+#' Average the concentration, esd, and mean grey level over depth bins
+#'
+#' @return
+#' A data.frame similar to the input data.frame but binned in depth
+#'
+#' @export
+#' @importFrom plyr round_any rename
+bin_particles_profiles <- function(x, bin=1) {
+
+  # bin depth
+  x$depth_binned <- round_any(x$depth, bin)
+
+  # loop over all profiles, if there are several
+  xm <- ddply(x, ~profileid+depth_binned, function(X) {
+    xm <- colMeans(X[,c("concentration", "esd", "mean_grey")])
+    xm <- c(xm, date_time=mean(X$date_time)) # NB: colMeans cannot deal with POSIX objects
+    return(xm)
+  })
+
+  # rename depth_binned to depth
+  xm <- rename(xb, c(depth_binned="depth"))
+
+  return(xm)
 }
 
 

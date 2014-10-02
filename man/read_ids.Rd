@@ -3,14 +3,12 @@
 \alias{read_ids}
 \title{Read the identifications of all objects in a project}
 \usage{
-read_ids(project, last = TRUE, verbose = TRUE, ...)
+read_ids(project, last = TRUE, ...)
 }
 \arguments{
 \item{project}{path to the project directory}
 
-\item{last}{when TRUE, only output the prediction and the last identification, called "Valid"; when FALSE, output all identifications (but still duplicate the last one and label it "Valid")}
-
-\item{verbose}{when TRUE, show read progress (when there are many files to read)}
+\item{last}{when TRUE, only output the prediction and the last validation, called "Valid"; when FALSE, output all validations (but still duplicate the last one and label it "Valid")}
 
 \item{...}{passed to \code{\link{read_pid}}}
 }

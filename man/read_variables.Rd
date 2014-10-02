@@ -3,12 +3,10 @@
 \alias{read_variables}
 \title{Read the descriptive variables of all objects in a project}
 \usage{
-read_variables(project, verbose = TRUE, ...)
+read_variables(project, ...)
 }
 \arguments{
 \item{project}{path to the project directory}
-
-\item{verbose}{when TRUE, show read progress (when there are many files to read)}
 
 \item{...}{passed to \code{\link{read_pid}}}
 }

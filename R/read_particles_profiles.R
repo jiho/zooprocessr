@@ -53,7 +53,7 @@ read_particles_profiles <- function(project, ...) {
       d$date_time <- parse_date_time(d$date_time, "ymdhms")
 
       # select relevant variables
-      d <- d[,c("profileid", "img_nb", "nb_part", "date_time", "depth", "concentration", "esd", "mean_grey")]
+      d <- d[,c("profileid", "date_time", "depth", "concentration", "esd", "mean_grey")]
     } else {
       message("Profile ", m$profileid, " not found. Please process it.")
       d <- NULL

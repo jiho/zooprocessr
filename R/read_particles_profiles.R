@@ -111,21 +111,30 @@ smooth_particles_profiles <- function(x, n=21) {
 #' A data.frame similar to the input data.frame but binned in depth
 #'
 #' @export
-#' @importFrom plyr ddply round_any rename
+#' @importFrom plyr round_any rename
+#' @importFrom dplyr group_by summarise
 bin_particles_profiles <- function(x, bin=1) {
 
   # bin depth
   x$depth_binned <- round_any(x$depth, bin)
 
   # loop over all profiles, if there are several
-  xm <- ddply(x, ~id+depth_binned, function(X) {
-    xm <- colMeans(X[,c("concentration", "esd", "mean_grey")])
-    xm <- c(xm, date_time=mean(X$date_time)) # NB: colMeans cannot deal with POSIX objects
-    return(xm)
-  })
+  x <- group_by(x, id, depth_binned)
+  xm <- summarise(x,
+    date_time=mean(date_time),
+    concentration=mean(concentration),
+    esd=mean(esd),
+    mean_grey=mean(mean_grey)
+  )
 
   # rename depth_binned to depth
   xm <- rename(xm, c(depth_binned="depth"))
+
+  # fix date_time, convert back in POSIXct
+  xm$date_time <- as.POSIXct(xm$date_time, origin="1970-01-01", tz="UTC")
+
+  # drop the tbl format
+  xm <- data.frame(xm)
 
   return(xm)
 }

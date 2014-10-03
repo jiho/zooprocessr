@@ -16,7 +16,7 @@ read_ids(project, last = TRUE, ...)
 Read the identifications of all objects in a project
 }
 \seealso{
-Other project data handling functions: \code{\link{read_learning_set_in_project}};
+Other project data handling functions: \code{\link{read_learning_set}};
   \code{\link{read_meta}};
   \code{\link{read_particles_profiles}};
   \code{\link{read_variables}}

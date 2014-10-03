@@ -5,10 +5,11 @@
 #' @family project data handling functions
 #' @export
 #' @importFrom stringr str_c
-read_learning_set_in_project <- function(project) {
+read_learning_set <- function(project) {
 
   # list all learning set files
-  learningSetFiles <- list.files(str_c(project, "/PID_process/Learning_set/"), pattern="pid$")
+  learningSetFiles <- list.files(str_c(project, "/PID_process/Learning_set/"), pattern="pid$", recursive=TRUE)
+  # TODO check if we need to be recursive here and wether the files are always named Learn_***.pid
   if ( length(learningSetFiles) > 1 ) {
     # when there are several, ask which one to read
     choice <- menu(learningSetFiles, graphics=FALSE)

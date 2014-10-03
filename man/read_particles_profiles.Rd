@@ -17,7 +17,7 @@ This reads the characteristics of particles in each UVP image (in results/***_da
 \code{\link{smooth_particles_profiles}} to smooth the noisy raw signal (through a moving average with function \code{\link{mav}})
 
 Other project data handling functions: \code{\link{read_ids}};
-  \code{\link{read_learning_set_in_project}};
-  \code{\link{read_meta}}; \code{\link{read_variables}}
+  \code{\link{read_learning_set}}; \code{\link{read_meta}};
+  \code{\link{read_variables}}
 }
 

@@ -23,7 +23,7 @@ In addition to just reading the data, a basic processing is done: names are homo
 }
 \seealso{
 Other project data handling functions: \code{\link{read_ids}};
-  \code{\link{read_learning_set_in_project}};
+  \code{\link{read_learning_set}};
   \code{\link{read_particles_profiles}};
   \code{\link{read_variables}}
 }

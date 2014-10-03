@@ -15,8 +15,7 @@ Read the descriptive variables of all objects in a project
 }
 \seealso{
 Other project data handling functions: \code{\link{read_ids}};
-  \code{\link{read_learning_set_in_project}};
-  \code{\link{read_meta}};
+  \code{\link{read_learning_set}}; \code{\link{read_meta}};
   \code{\link{read_particles_profiles}}
 }
 

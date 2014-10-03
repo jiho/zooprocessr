@@ -13,14 +13,17 @@
 #' @importFrom lubridate parse_date_time
 read_particles_profiles <- function(project, ...) {
 
-  # read project metadata
+  if ( project_type(project) != "uvp5" ) {
+    stop("Project ", project, " is not a UVP5 project")
+  }
+
   meta <- read_meta(project)
   
   # read all files
-  D <- ddply(meta, ~profileid, function(m, ...) {
+  D <- ddply(meta, ~id, function(m, ...) {
 
     # generate datfile name
-    f <- str_c(project, "/results/", m$profileid, "_datfile.txt")
+    f <- str_c(project, "/results/", m$id, "_datfile.txt")
     
     if (file.exists(f)) {
       # read datfile file
@@ -42,7 +45,7 @@ read_particles_profiles <- function(project, ...) {
       d$esd <- 2 * sqrt(d$mean_area_um2 / pi)
 
       # add profile id
-      d$profileid <- m$profileid
+      d$id <- m$id
       
       # convert depth to m
       d$depth <- d$depth / 10
@@ -53,13 +56,13 @@ read_particles_profiles <- function(project, ...) {
       d$date_time <- parse_date_time(d$date_time, "ymdhms")
 
       # select relevant variables
-      d <- d[,c("profileid", "date_time", "depth", "concentration", "esd", "mean_grey")]
+      d <- d[,c("id", "date_time", "depth", "concentration", "esd", "mean_grey")]
     } else {
-      message("Profile ", m$profileid, " not found. Please process it.")
+      message("Profile ", m$id, " not found. Please process it.")
       d <- NULL
     }
     return(d)
-  }, .progress=progress(meta$profileid))
+  }, .progress=progress(meta$id))
   
   return(D)
 }
@@ -79,10 +82,11 @@ read_particles_profiles <- function(project, ...) {
 #' A data.frame identical to the input data.frame but with smoothed data
 #'
 #' @export
+#' @importFrom plyr ddply
 smooth_particles_profiles <- function(x, n=21) {
   
   # loop over all profiles, if there are several
-  x <- ddply(x, ~profileid, function(X) {
+  x <- ddply(x, ~id, function(X) {
     # filter the data series
     X$concentration <- mav(x=X$concentration, n=n)
     X$esd           <- mav(x=X$esd, n=n)
@@ -107,14 +111,14 @@ smooth_particles_profiles <- function(x, n=21) {
 #' A data.frame similar to the input data.frame but binned in depth
 #'
 #' @export
-#' @importFrom plyr round_any rename
+#' @importFrom plyr ddply round_any rename
 bin_particles_profiles <- function(x, bin=1) {
 
   # bin depth
   x$depth_binned <- round_any(x$depth, bin)
 
   # loop over all profiles, if there are several
-  xm <- ddply(x, ~profileid+depth_binned, function(X) {
+  xm <- ddply(x, ~id+depth_binned, function(X) {
     xm <- colMeans(X[,c("concentration", "esd", "mean_grey")])
     xm <- c(xm, date_time=mean(X$date_time)) # NB: colMeans cannot deal with POSIX objects
     return(xm)

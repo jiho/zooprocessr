@@ -63,8 +63,8 @@ read_meta_in_project.zooscan <- function(project, from.dat1=FALSE) {
     # NB: the "_1" is a leftover from the time there were two bits of frame to be processed separately, because of computer memory limitations
 
   } else {
-    scan <- read.csv(scan_file, sep=";")
-    sample <- read.csv(sample_file, sep=";")
+    scan <- read.csv(scan_file, sep=";", stringsAsFactors=FALSE)
+    sample <- read.csv(sample_file, sep=";", stringsAsFactors=FALSE)
 
     m <- join(sample, scan, by="sampleid")
   }

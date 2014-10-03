@@ -27,7 +27,7 @@ read_particles_profiles <- function(project, ...) {
     
     if (file.exists(f)) {
       # read datfile file
-      d <- read.table(f, sep=";", col.names=c("img_nb", "date_time", "depth", str_c("uvp_", 1:11), "nb_part", "mean_area_px", "mean_grey", "nb_large_part", "mean_grey_large_part", "extra"), ...)
+      d <- read.table(f, sep=";", col.names=c("img_nb", "date_time", "depth", str_c("uvp_", 1:11), "nb_part", "mean_area_px", "mean_grey", "nb_large_part", "mean_grey_large_part", "extra"), stringsAsFactors=FALSE, ...)
       # TODO check with marc: is the total number of particles nb_part or nb_part + nb_large_part?
 
       # remove "rinsing" pre-cast

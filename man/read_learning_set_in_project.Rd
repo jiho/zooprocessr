@@ -15,7 +15,6 @@ Read the learning set of a project
 Other project data handling functions: \code{\link{read_ids}};
   \code{\link{read_meta}};
   \code{\link{read_particles_profiles}};
-  \code{\link{read_sample_meta}};
   \code{\link{read_variables}}
 }
 

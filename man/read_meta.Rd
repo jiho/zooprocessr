@@ -3,10 +3,12 @@
 \alias{read_meta}
 \title{Read the metadata file for a project}
 \usage{
-read_meta(project)
+read_meta(project, from.dat1 = FALSE)
 }
 \arguments{
 \item{project}{path to the project directory}
+
+\item{from.dat1}{boolean, wether to skip the metadata tables and read data from the header of \code{dat1.txt} files}
 }
 \value{
 A data.frame with data appropriate for the type of project.
@@ -15,13 +17,14 @@ A data.frame with data appropriate for the type of project.
 Read the metadata file for a project
 }
 \details{
-First guess the type of project from its name. If the project is a UVP project, read the file in \code{meta} and return the result. If the project is a Zooscan project, read the two files in \code{Zooscan_meta} (one for the samples and one for the scans), join the information in a single data.frame, and return it.
+First guess the type of project from its name. If the project is a UVP project, read the file in \code{meta} and return the result. If the project is a Zooscan project, read the two files in \code{Zooscan_meta} (one for the samples and one for the scans), join the information in a single data.frame, and return it. If the metadata tables do not exist, or if \code{from.dat1} is \code{TRUE}, read the meta data from the header of the \code{dat1.txt} files.
+
+In addition to just reading the data, a basic processing is done: names are homogenised between dat1 files and the metadata table and dates are parsed.
 }
 \seealso{
 Other project data handling functions: \code{\link{read_ids}};
   \code{\link{read_learning_set_in_project}};
   \code{\link{read_particles_profiles}};
-  \code{\link{read_sample_meta}};
   \code{\link{read_variables}}
 }
 

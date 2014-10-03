@@ -18,7 +18,6 @@ This reads the characteristics of particles in each UVP image (in results/***_da
 
 Other project data handling functions: \code{\link{read_ids}};
   \code{\link{read_learning_set_in_project}};
-  \code{\link{read_meta}}; \code{\link{read_sample_meta}};
-  \code{\link{read_variables}}
+  \code{\link{read_meta}}; \code{\link{read_variables}}
 }
 

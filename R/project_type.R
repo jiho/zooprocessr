@@ -20,7 +20,7 @@ project_type <- function(project) {
   return(type)
 }
 
-add_class <- function(project) {
+project_class <- function(project) {
   # add the project type as class
   class(project) <- c(project_type(project), class(project))
   return(project)

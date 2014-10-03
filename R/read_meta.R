@@ -14,7 +14,7 @@
 #' @family project data handling functions
 #' @export
 read_meta <- function(project, from.dat1=FALSE) {
-  project <- add_class(project)
+  project <- project_class(project)
   read_meta_in_project(project=project, from.dat1=from.dat1)
 }
 

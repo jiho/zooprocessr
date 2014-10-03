@@ -6,7 +6,7 @@
 bin_particles_profiles(x, bin = 1)
 }
 \arguments{
-\item{x}{a data.frame resulting from \code{\link{read_particles_profile}}, with one or several UVP profiles}
+\item{x}{a data.frame resulting from \code{\link{read_particles_profiles}}, with one or several UVP profiles}
 
 \item{bin}{the size of the depth bin in m}
 }

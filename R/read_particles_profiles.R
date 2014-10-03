@@ -53,7 +53,7 @@ read_particles_profiles <- function(project, ...) {
       # parse the date
       d$date_time <- str_replace(d$date_time, "\t", "")
       d$date_time <- str_replace(d$date_time, "_", ".")
-      d$date_time <- parse_date_time(d$date_time, "ymdhms")
+      d$date_time <- parse_date_time(d$date_time, orders="ymdhms")
 
       # select relevant variables
       d <- d[,c("id", "date_time", "depth", "concentration", "esd", "mean_grey")]
@@ -72,7 +72,7 @@ read_particles_profiles <- function(project, ...) {
 
 #' Smooth small scale variability in UVP profiles
 #'
-#' @param x a data.frame resulting from \code{\link{read_particles_profile}}, with one or several UVP profiles
+#' @param x a data.frame resulting from \code{\link{read_particles_profiles}}, with one or several UVP profiles
 #' @param n number of images to smooth data over. The higher, the smoother the profiles.
 #'
 #' @details
@@ -101,7 +101,7 @@ smooth_particles_profiles <- function(x, n=21) {
 
 #' Bin UVP profiles over depth
 #'
-#' @param x a data.frame resulting from \code{\link{read_particles_profile}}, with one or several UVP profiles
+#' @param x a data.frame resulting from \code{\link{read_particles_profiles}}, with one or several UVP profiles
 #' @param bin the size of the depth bin in m
 #'
 #' @details
@@ -125,7 +125,7 @@ bin_particles_profiles <- function(x, bin=1) {
   })
 
   # rename depth_binned to depth
-  xm <- rename(xb, c(depth_binned="depth"))
+  xm <- rename(xm, c(depth_binned="depth"))
 
   return(xm)
 }
@@ -137,7 +137,7 @@ bin_particles_profiles <- function(x, bin=1) {
 #' @param n size of the window over which to compute the moving average
 #'
 #' @details
-#' The function computes a weighted, centred moving average: each data point is computed as the average of the points around it, with decreasing weights as one moves away from the center. The original data is padded on the left and on the right to be able to compute moving average values at the extremities.
+#' The function computes a weighted, centred moving average: each data point is computed as the average of the points around it, with decreasing weights as one moves away from the centre. The original data is padded on the left and on the right to be able to compute moving average values at the extremities.
 #' 
 #' @return A numeric vector of the same length as x, with the moving average values
 #'

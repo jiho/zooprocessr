@@ -6,7 +6,7 @@
 smooth_particles_profiles(x, n = 21)
 }
 \arguments{
-\item{x}{a data.frame resulting from \code{\link{read_particles_profile}}, with one or several UVP profiles}
+\item{x}{a data.frame resulting from \code{\link{read_particles_profiles}}, with one or several UVP profiles}
 
 \item{n}{number of images to smooth data over. The higher, the smoother the profiles.}
 }

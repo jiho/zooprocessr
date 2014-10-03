@@ -81,7 +81,7 @@ read_meta_in_project.zooscan <- function(project, from.dat1=FALSE) {
                 "validation.validation_upload_time"
                 )
   for (col in intersect(names(m), date_cols) ) {
-    m[,col] <- parse_date_time(m[,col], order="ymdhm")
+    m[,col] <- parse_date_time(m[,col], orders="ymdhm")
   }
 
   # homogenise names between zooscan and uvp
@@ -122,7 +122,7 @@ read_meta_in_project.uvp5 <- function(project, from.dat1=FALSE) {
   }
 
   # parse dates
-  m$datetime <- parse_date_time(as.character(m$filename), order="ymdhms")
+  m$datetime <- parse_date_time(as.character(m$filename), orders="ymdhms")
 
   # homogenise names between uvp and zooscan
   m$id <- m$profileid
@@ -133,7 +133,7 @@ read_meta_in_project.uvp5 <- function(project, from.dat1=FALSE) {
 }
 
 
-#' @importFrom plyr ldply
+#' @importFrom plyr ldply laply llply
 read_meta_from_dat1 <- function(project) {
 
   # list all dat1.txt files

@@ -17,6 +17,6 @@ A numeric vector of the same length as x, with the moving average values
 Compute a moving average
 }
 \details{
-The function computes a weighted, centred moving average: each data point is computed as the average of the points around it, with decreasing weights as one moves away from the center. The original data is padded on the left and on the right to be able to compute moving average values at the extremities.
+The function computes a weighted, centred moving average: each data point is computed as the average of the points around it, with decreasing weights as one moves away from the centre. The original data is padded on the left and on the right to be able to compute moving average values at the extremities.
 }
 

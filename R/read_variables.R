@@ -18,7 +18,7 @@ read_variables <- function(project, ...) {
 
     if ( ! file.exists(f) ) {
       # warn if it does not exist and skip it
-      warning(id, " is in the metadata table but has no corresponding *_dat1.pid file")
+      warning(m$id, " is in the metadata table but has no corresponding *_dat1.pid file")
       p <- NULL
     } else {
       p <- read_pid(f, data=TRUE, ...)

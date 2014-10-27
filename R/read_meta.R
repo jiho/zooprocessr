@@ -63,8 +63,8 @@ read_meta_in_project.zooscan <- function(project, from.dat1=FALSE) {
     # NB: the "_1" is a leftover from the time there were two bits of frame to be processed separately, because of computer memory limitations
 
   } else {
-    scan <- read.csv(scan_file, sep=";", stringsAsFactors=FALSE)
-    sample <- read.csv(sample_file, sep=";", stringsAsFactors=FALSE)
+    scan <- read.csv(scan_file, sep=";", stringsAsFactors=FALSE, fileEncoding="latin1", encoding="utf8")
+    sample <- read.csv(sample_file, sep=";", stringsAsFactors=FALSE, fileEncoding="latin1", encoding="utf8")
 
     m <- join(sample, scan, by="sampleid")
   }
@@ -118,7 +118,7 @@ read_meta_in_project.uvp5 <- function(project, from.dat1=FALSE) {
     # use those, simple, standard names instead of the compound one from the dat1 file
     names(m)[matches] <- n[matches]
   } else {
-    m <- read.csv(meta_file, sep=";")
+    m <- read.csv(meta_file, sep=";", fileEncoding="latin1", encoding="utf8")
   }
 
   # parse dates

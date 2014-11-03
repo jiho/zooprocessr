@@ -140,7 +140,8 @@ read_meta_from_dat1 <- function(project) {
   files <- list.files(str_c(project, "/PID_process/Pid_results/Dat1_validated"), pattern="dat1\\.txt$", full.names=TRUE)
 
   if ( length(files) == 0 ) {
-    stop("No dat1.txt files found in project ", project)
+    warning("No dat1.txt files found in project ", project)
+    return(NULL)
   }
 
   # extract all metadata from them

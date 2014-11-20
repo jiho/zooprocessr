@@ -177,7 +177,7 @@ mav <- function(x, n) {
   w <- w / sum(w)
   
   # compute the moving average
-  xpf <- filter(xp, w, sides=2)
+  xpf <- stats::filter(xp, w, sides=2)
   
   # remove the padded bits (which are NA anyway)
   xf <- xpf[o + (1:n)]

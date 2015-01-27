@@ -40,6 +40,10 @@ read_meta_in_project.zooscan <- function(project, from.dat1=FALSE) {
   if ( from.dat1 ) {
     # read metadata in dat1 files
     m <- read_meta_from_dat1(project)
+    # empty project => NULL data => stop here
+    if ( is.null(m) ) {
+      return(m)
+    }
 
     # homogenise the column names with the official metadata table
     # = extract the last bit of the current metadata names and look for an exact match in the usual zooscan metadata names

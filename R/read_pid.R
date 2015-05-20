@@ -1,9 +1,9 @@
 #' Read dat1.pid or dat1.txt files
 #'
 #' @param file path to a \code{dat1.pid} or \code{dat1.txt} file
-#' @param data boolean, wether to extract the data table
-#' @param metadata boolean, wether to extract the metadata from the header
-#' @param verbose boolean, wether to print information
+#' @param data boolean, whether to extract the data table
+#' @param metadata boolean, whether to extract the metadata from the header
+#' @param verbose boolean, whether to print information
 #'
 #' @return
 #' When \code{data} is requested, the function returns it as a data.frame. When \code{metadata} is requested, it is returned as a named list (key-value pairs). When both are requested, the result is the data as a data.frame with an attribute named \code{meta} containing the metadata list.

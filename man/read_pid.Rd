@@ -8,11 +8,11 @@ read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE)
 \arguments{
 \item{file}{path to a \code{dat1.pid} or \code{dat1.txt} file}
 
-\item{data}{boolean, wether to extract the data table}
+\item{data}{boolean, whether to extract the data table}
 
-\item{metadata}{boolean, wether to extract the metadata from the header}
+\item{metadata}{boolean, whether to extract the metadata from the header}
 
-\item{verbose}{boolean, wether to print information}
+\item{verbose}{boolean, whether to print information}
 }
 \value{
 When \code{data} is requested, the function returns it as a data.frame. When \code{metadata} is requested, it is returned as a named list (key-value pairs). When both are requested, the result is the data as a data.frame with an attribute named \code{meta} containing the metadata list.

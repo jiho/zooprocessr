@@ -33,6 +33,7 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
     if ( verbose ) { message("Read data") }
     # read data table
     dt <- fread(file, skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE)
+    names(dt) <- make.names(names(dt))
     names(dt)[1] <- "Item"
     # TODO read from a text connection here and test wether this is faster
 

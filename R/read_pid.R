@@ -9,6 +9,7 @@
 #' When \code{data} is requested, the function returns it as a data.frame. When \code{metadata} is requested, it is returned as a named list (key-value pairs). When both are requested, the result is the data as a data.frame with an attribute named \code{meta} containing the metadata list.
 #'
 #' @importFrom stringr str_replace_all str_detect str_split str_trim fixed
+#' @importFrom data.table fread
 #' @export
 read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
 
@@ -31,7 +32,7 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
   if ( data ) {
     if ( verbose ) { message("Read data") }
     # read data table
-    dt <- read.table(file, skip=dataIdx, sep=";", header=TRUE, stringsAsFactors=FALSE)
+    dt <- fread(file, skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE)
     names(dt)[1] <- "Item"
     # TODO read from a text connection here and test wether this is faster
 

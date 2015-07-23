@@ -7,8 +7,7 @@ A package to deal with data produced by [zooprocess](http://www.obs-vlfr.fr/LOV/
 The package is under development and is not on CRAN yet. To install it, the simplest method is therefore
 
     # install.packages("devtools")
-    library("devtools")
-    install_github("zooprocessr", "jiho")
+    devtools::install_github("jiho/zooprocessr")
 
 ## Usage
 

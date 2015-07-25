@@ -128,6 +128,7 @@ confusion_stats <- function(x, sort.by=NULL) {
   # http://en.wikipedia.org/wiki/F1_score
   # the higher the better
   stats$F1 <- with(stats, (2 * precision * recall) / (precision + recall))
+  stats$F1 <- round(stats$F1, 1)
 
   if ( ! is.null(sort.by) ) {
     sort.by <- match.arg(sort.by, names(stats))

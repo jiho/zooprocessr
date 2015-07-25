@@ -111,7 +111,7 @@ confusion_stats <- function(x, sort.by=NULL) {
   (tn <- sum(x) - tp - fp -fn) # true negative
 
   # store it
-  stats <- data.frame(tp, fp, fn)
+  stats <- data.frame(class=names(tp), tp, fp, fn, tot=tp+fn, row.names=NULL)
 
   # define a formatter for percentages
   format_percent <- function(x, precision=1) {

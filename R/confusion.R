@@ -111,7 +111,7 @@ confusion_stats <- function(x, sort.by=NULL) {
   (tn <- sum(x) - tp - fp -fn) # true negative
 
   # store it
-  stats <- data.frame(class=names(tp), tp, fp, fn, tot=tp+fn, row.names=NULL)
+  stats <- data.frame(class=names(tp), tp, fp, fn, tot=tp+fn)
 
   # define a formatter for percentages
   format_percent <- function(x, precision=1) {
@@ -133,6 +133,9 @@ confusion_stats <- function(x, sort.by=NULL) {
     sort.by <- match.arg(sort.by, names(stats))
     stats <- stats[order(stats[,sort.by]),]
   }
+
+  # remove row.names
+  rownames(stats) <- NULL
 
   return(stats)
 }

@@ -14,6 +14,21 @@
 #' @export
 confusion_matrix <- function(pred, valid) {
 
+  if (is.factor(pred)) {
+    levels_pred <- as.character(levels(pred))
+  } else {
+    levels_pred <- unique(pred)
+  }
+  if (is.factor(valid)) {
+    levels_valid <- as.character(levels(valid))
+  } else {
+    levels_valid <- unique(valid)
+  }
+
+  all_levels <- unique(c(levels_pred, levels_valid))
+  pred <- factor(pred, levels=all_levels)
+  valid <- factor(valid, levels=all_levels)
+
   t <- table(pred=pred, valid=valid)
 
   return(t)

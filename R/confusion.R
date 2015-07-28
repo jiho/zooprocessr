@@ -102,6 +102,14 @@ autoplot.table <- function(object, norm="none", trans=NULL) {
 #'
 #' @family confusion statistics functions
 #'
+#'
+#' @examples
+#' n <- 50
+#' pred <- sample(letters[1:5], size=n, replace=TRUE)
+#' valid <- sample(letters[2:8], size=n, replace=TRUE)
+#' x <- confusion_matrix(pred, valid)
+#' confusion_stats(x)
+#'
 #' @export
 confusion_stats <- function(x, sort.by=NULL) {
 

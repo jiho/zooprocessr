@@ -11,6 +11,9 @@ confusion_matrix(pred, valid)
 
 \item{valid}{vector of true categories, after validation}
 }
+\value{
+An object of class \code{\link[base]{table}} with the predicted categories as rows and the true, validated categories as columns. The list of categories is made the same for each which always result in a square matrix
+}
 \description{
 Compute a confusion matrix
 }

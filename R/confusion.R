@@ -5,6 +5,8 @@
 #'
 #' @family confusion statistics functions
 #'
+#' @return An object of class \code{\link[base]{table}} with the predicted categories as rows and the true, validated categories as columns. The list of categories is made the same for each which always result in a square matrix 
+#'
 #' @examples
 #' n <- 50
 #' pred <- sample(letters[1:5], size=n, replace=TRUE)
@@ -14,6 +16,8 @@
 #' @export
 confusion_matrix <- function(pred, valid) {
 
+  # force pred and valid to have the same levels
+  # => detect which are in each and compile a common list
   if (is.factor(pred)) {
     levels_pred <- as.character(levels(pred))
   } else {
@@ -29,6 +33,7 @@ confusion_matrix <- function(pred, valid) {
   pred <- factor(pred, levels=all_levels)
   valid <- factor(valid, levels=all_levels)
 
+  # compute the confusion matrix
   t <- table(pred=pred, valid=valid)
 
   return(t)

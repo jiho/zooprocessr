@@ -14,6 +14,13 @@ confusion_stats(x, sort.by = NULL)
 \description{
 Compute confusion statistics (recall, precision, etc.)
 }
+\examples{
+n <- 50
+pred <- sample(letters[1:5], size=n, replace=TRUE)
+valid <- sample(letters[2:8], size=n, replace=TRUE)
+x <- confusion_matrix(pred, valid)
+confusion_stats(x)
+}
 \seealso{
 Other confusion statistics functions: \code{\link{autoplot.table}};
   \code{\link{confusion_matrix}}

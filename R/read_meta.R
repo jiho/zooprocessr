@@ -136,6 +136,48 @@ read_meta_in_project.uvp5 <- function(project, from.dat1=FALSE) {
   return(m)
 }
 
+#' @importFrom stringr str_c str_replace
+#' @importFrom lubridate parse_date_time
+read_meta_in_project.generic <- function(project, from.dat1=FALSE) {
+  meta_file <- str_c(project, "/meta/Generic_header_", str_replace(basename(project), "generic_", ""), ".txt")
+
+  if ( ! file.exists(meta_file) ) {
+    warning("No metadata table in ", project, ". Reconstructing metadata from dat1 file headers.")
+    from.dat1 <- TRUE
+  }
+
+  if ( from.dat1 ) {
+    # # read metadata in dat1 files
+    # m <- read_meta_from_dat1(project)
+    #
+    # # homogenise the column names with the official metadata table
+    # # = extract the last bit of the current metadata names and look for an exact match in the usual uvp metadata names
+    # n <- str_split(names(m), fixed("."))
+    # n <- laply(n, function(x) {x[length(x)]})
+    # meta_names <- c("cruise", "ship", "filename", "profileid", "bottomdepth", "ctdrosettefilename", "latitude", "longitude", "firstimage", "volimage", "aa", "exp", "dn", "winddir", "windspeed", "seastate", "nebuloussness", "comment", "endimg", "yoyo", "stationid")
+    #
+    # matches <- na.omit(match(meta_names, n))
+    # # NB: works because there is only one match for each
+    # #     check with
+    # # llply(meta_names, function(x) { which(n == x) })
+    #
+    # # use those, simple, standard names instead of the compound one from the dat1 file
+    # names(m)[matches] <- n[matches]
+  } else {
+    m <- read.csv(meta_file, sep=";", fileEncoding="latin1", encoding="utf8")
+  }
+
+  # parse dates
+  m$datetime <- parse_date_time(as.character(m$datetime), orders="ymdhm")
+
+  # homogenise names between uvp and zooscan
+  m$id <- m$sampleid
+  m$fracnb <- 1
+  m$vol <- m$volconc
+
+  return(m)
+}
+
 
 #' @importFrom plyr ldply laply llply
 read_meta_from_dat1 <- function(project) {

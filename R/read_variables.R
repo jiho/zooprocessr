@@ -5,16 +5,25 @@
 #'
 #' @family project data handling functions
 #' @export
+read_variables <- function(project, ...) {
+  project <- project_class(project)
+  read_variables_in_project(project=project, ...)
+}
+
+read_variables_in_project <- function(project, ...) {
+  UseMethod("read_variables_in_project")
+}
+
 #' @importFrom stringr str_c
 #' @importFrom plyr ddply
-read_variables <- function(project, ...) {
+read_variables_in_project.zooscan <- function(project, ...) {
 
   meta <- read_meta(project)
 
   # read all files
   D <- ddply(meta, ~id, function(m, ...) {
     # construct file name
-    f <- str_c(project, "/PID_process/Pid_results/Pid_predicted/", m$id, "_dat1.pid")
+    f <- str_c(project, "/Zooscan_scan/_work/", m$id, "/", m$id ,"_dat1.pid")
 
     if ( ! file.exists(f) ) {
       # warn if it does not exist and skip it

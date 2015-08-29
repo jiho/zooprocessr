@@ -33,7 +33,8 @@ read_variables_in_project.zooscan <- function(project, ...) {
       p <- read_pid(f, data=TRUE, ...)
     }
     return(p)
-  }, ..., .progress=progress(meta$id))
+  }, ..., .progress=progress(meta$id), .inform=TRUE)
+  # NB: inform does not slow things down here and helps debugging
 
   return(D)
 }

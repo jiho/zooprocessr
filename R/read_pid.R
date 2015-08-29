@@ -20,22 +20,15 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
   if ( verbose ) { message("Detect file structure") }
   # read the first 2000 lines as text
   d <- scan(file, what="character", sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8", n=2000)
-  # remove the first line if it only contains "PID"
-  if (d[1] == "PID") {
-    d <- d[-1]
-  }
-
-  # get line number where the data table starts
-  dataIdx <- which(str_detect(d, fixed("[Data]"))) + 1
-  # NB: we skipped the first line in the scan() call above, so the line numbers in the file are those computed here + 1, hence the dataIdx+1
 
   if ( data ) {
     if ( verbose ) { message("Read data") }
+    # get line number where the data table starts
+    dataIdx <- which(str_detect(d, fixed("[Data]")))
     # read data table
-    dt <- fread(file, skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE)
+    dt <- fread(str_c(d, collapse="\n"), skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE)
     names(dt) <- make.names(names(dt))
     names(dt)[1] <- "Item"
-    # TODO read from a text connection here and test wether this is faster
 
     # if there is/are validation(s) duplicate the latest validation in a column named "Valid"
     hasValidation <- any(str_detect(names(dt), "pred_valid_Id_"))
@@ -47,6 +40,10 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
   if ( metadata ) {
     if ( verbose ) { message("Read metadata") }
 
+    # remove the first line if it only contains "PID"
+    if (d[1] == "PID") {
+      d <- d[-1]
+    }
     # remove pseudo blank lines
     d <- d[d!=" "]
     # get line number where the data table now starts

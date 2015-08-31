@@ -2,6 +2,7 @@
 
 S3method(autoplot,table)
 export(bin_particles_profiles)
+export(check)
 export(confusion_matrix)
 export(confusion_stats)
 export(get_prediction_variables)

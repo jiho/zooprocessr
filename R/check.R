@@ -147,7 +147,7 @@ print.checklist <- function(x, nmax=50) {
       }
       X <- str_c("  ", X, collapse="\n")
       if ( n > nmax) {
-       X <- str_c(X, "\n  and ", (n - nmax), " others...")
+       X <- str_c(X, "\nand ", (n - nmax), " others...")
       }
      message(X)
     }

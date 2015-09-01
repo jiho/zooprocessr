@@ -57,11 +57,11 @@ check_project_dispatcher.zooscan <- function(project) {
   in_meta_no_dat1 <- setdiff(meta$id, dat1)
   attr(in_meta_no_dat1, "message") <- "Sample in meta but no .txt file"
 
-  pid_not_in_meta <- setdiff(pids, meta$id)
+  pid_not_in_meta <- str_replace(pid_files[which(! pids %in% meta$id)], project, "")
   attr(pid_not_in_meta, "message") <- "Sample with .pid file but not in meta"
 
-  dat1_not_in_meta <- setdiff(dat1, meta$id)
-  attr(dat1_not_in_meta, "message") <- "Sample with .pid file but not in meta"
+  dat1_not_in_meta <- str_replace(dat1_files[which(! dat1 %in% meta$id)], project, "")
+  attr(dat1_not_in_meta, "message") <- "Sample with .txt file but not in meta"
   
   pid_no_dat1 <- setdiff(pids, dat1)
   attr(pid_no_dat1, "message") <- "Sample with .pid file but no .txt file"

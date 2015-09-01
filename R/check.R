@@ -22,18 +22,18 @@
 #' Returns a list (of class \code{check}) containing all problematic items (sample or object names) that can be printed with various levels of detail (depending on \code{nmax})
 #'
 #' @export
-check <- function(project) {
+check_project <- function(project) {
   project <- project_class(project)
-  check_project(project=project)
+  check_project_dispatcher(project=project)
 }
 
-check_project <- function(project) {
-  UseMethod("check_project")
+check_project_dispatcher <- function(project) {
+  UseMethod("check_project_dispatcher")
 }
 
 #' @importFrom stringr str_c str_replace str_split
 #' @importFrom plyr ldply
-check_project.zooscan <- function(project) {
+check_project_dispatcher.zooscan <- function(project) {
 
   # message("CHECK SAMPLES")
 
@@ -129,14 +129,14 @@ check_project.zooscan <- function(project) {
     img_not_in_dat1=img_not_in_dat1,
     wrong_ids=wrong_ids
   )
-  class(out) <- c("check", class(out))
+  class(out) <- c("checklist", class(out))
   return(out)
 }
 
 #' @importFrom plyr l_ply
 #' @export
-#' @rdname check
-print.check <- function(x, nmax=50) {
+#' @rdname check_project
+print.checklist <- function(x, nmax=50) {
   l_ply(x, function(X) {
     n <- length(X)
     if (n > 0) {

@@ -66,12 +66,12 @@ autoplot.table <- function(object, norm="none", trans=NULL) {
   norm <- match.arg(norm, c("none", "rows", "columns"))
   variableName <- "Freq"
   if ( norm == "rows") {
-    n <- rowSums(x)
+    n <- rowSums(x, na.rm=TRUE)
     x <- x / n
     variableName <- "Freq\nby row"
   }
   if ( norm == "columns") {
-    n <- colSums(x)
+    n <- colSums(x, na.rm=TRUE)
     x <- t(t(x) / n)
     variableName <- "Freq\nby column"
   }

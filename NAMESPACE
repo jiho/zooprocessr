@@ -3,6 +3,7 @@
 S3method(autoplot,table)
 S3method(print,checklist)
 export(bin_particles_profiles)
+export(blank_diagonal)
 export(check_project)
 export(confusion_matrix)
 export(confusion_stats)

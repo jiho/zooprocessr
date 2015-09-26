@@ -39,6 +39,38 @@ confusion_matrix <- function(pred, valid) {
   return(t)
 }
 
+
+#' Blank-out the diagonal of a confusion matrix
+#'
+#' @param x confusion matrix (as output by \code{\link{confusion_matrix}})
+#'
+#' @details
+#' Blanking-out the diagonal allows to better focus on the prediction errors, particularly for plots.
+#'
+#' @family confusion statistics functions
+#'
+#' @return The confusion matrix with NAs on the diagonal.
+#'
+#' @examples
+#' n <- 50
+#' pred <- sample(letters[1:5], size=n, replace=TRUE)
+#' valid <- sample(letters[2:8], size=n, replace=TRUE)
+#' m <- confusion_matrix(pred, valid)
+#' m
+#' blank_diagonal(m)
+#' \dontrun{
+#' library("ggplot2")
+#' autoplot(blank_diagonal(m))
+#' }
+#'
+#' @export
+blank_diagonal <- function(x) {
+  n <- nrow(x)
+  x[cbind(1:n, 1:n)] <- NA
+  return(x)
+}
+
+
 #' Plot a contingency table (i.e. confusion matrix) as a heat map
 #'
 #' @param object contingency table, returned by function \code{table()} (or \code{\link{confusion_matrix}}) 

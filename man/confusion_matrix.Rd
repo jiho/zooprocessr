@@ -25,6 +25,7 @@ confusion_matrix(pred, valid)
 }
 \seealso{
 Other confusion statistics functions: \code{\link{autoplot.table}};
+  \code{\link{blank_diagonal}};
   \code{\link{confusion_stats}}
 }
 

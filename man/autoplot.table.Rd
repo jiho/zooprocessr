@@ -24,7 +24,8 @@ x <- confusion_matrix(pred, valid)
 # autoplot(x)
 }
 \seealso{
-Other confusion statistics functions: \code{\link{confusion_matrix}};
+Other confusion statistics functions: \code{\link{blank_diagonal}};
+  \code{\link{confusion_matrix}};
   \code{\link{confusion_stats}}
 }
 

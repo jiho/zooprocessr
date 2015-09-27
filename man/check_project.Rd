@@ -24,15 +24,15 @@ Check consistency of data in a project
 This function
 \enumerate{
   \item Reads the metadata table of the project
-  \item Lists and reads all \code{.pid} files in the \code{work} directory
-  \item Lists and reads all \code{dat1.tx} files in the \code{PID_process/Pid_results/Dat1_validated} directory
+  \item Lists and reads all \code{dat1.pid} files in the \code{work} directory
+  \item Lists and reads all \code{dat1.tx} files in \code{PID_process/Pid_results/Dat1_validated} (or \code{Dat1_extracted} if the previous one is empty)
   \item Lists all images in the \code{PID_process/Sorted_vignettes} directory
 }
 Then it
 \enumerate{
-  \item Compares the list of samples in the metadata, \code{.pid}, and \code{.txt} files
-  \item Compares the list of objects in the \code{.pid}, \code{.txt} files, and present as images (i.e. vignettes)
-  \item For images present both in the \code{.txt} files and as vignettes, checks that the location of a vignette (its classification) matches the last column in the \code{txt} file
+  \item Compares the list of samples in the metadata, \code{dat1.pid}, and \code{dat1.txt} files
+  \item Compares the list of objects in the \code{dat1.pid}, \code{dat1.txt} files, and present as images (i.e. vignettes)
+  \item For images present both in the \code{dat1.txt} files and as vignettes, checks that the location of a vignette (its classification) matches the last column in the \code{dat1.txt} file
 }
 }
 

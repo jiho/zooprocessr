@@ -18,8 +18,8 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
   }
 
   if ( verbose ) { message("Detect file structure") }
-  # read the first 2000 lines as text
-  d <- scan(file, what="character", sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8", n=2000)
+  # read the the file as text
+  d <- scan(file, what="character", sep="\n", quiet=T, fileEncoding="ISO-8859-1", encoding="UTF-8")
 
   if ( data ) {
     if ( verbose ) { message("Read data") }

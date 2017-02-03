@@ -20,3 +20,4 @@ Imports:
     plyr,
     ggplot2,
     lubridate
+RoxygenNote: 5.0.1

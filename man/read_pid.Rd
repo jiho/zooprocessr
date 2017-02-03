@@ -4,7 +4,7 @@
 \alias{read_pid}
 \title{Read dat1.pid or dat1.txt files}
 \usage{
-read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE)
+read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE, ...)
 }
 \arguments{
 \item{file}{path to a \code{dat1.pid} or \code{dat1.txt} file}
@@ -14,6 +14,8 @@ read_pid(file, data = TRUE, metadata = FALSE, verbose = FALSE)
 \item{metadata}{boolean, whether to extract the metadata from the header}
 
 \item{verbose}{boolean, whether to print information}
+
+\item{...}{further arguments, passed to \code{\link[data.table]{fread}}}
 }
 \value{
 When \code{data} is requested, the function returns it as a data.frame. When \code{metadata} is requested, it is returned as a named list (key-value pairs). When both are requested, the result is the data as a data.frame with an attribute named \code{meta} containing the metadata list.

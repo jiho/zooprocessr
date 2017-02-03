@@ -4,6 +4,7 @@
 #' @param data boolean, whether to extract the data table
 #' @param metadata boolean, whether to extract the metadata from the header
 #' @param verbose boolean, whether to print information
+#' @param ... further arguments, passed to \code{\link[data.table]{fread}}
 #'
 #' @return
 #' When \code{data} is requested, the function returns it as a data.frame. When \code{metadata} is requested, it is returned as a named list (key-value pairs). When both are requested, the result is the data as a data.frame with an attribute named \code{meta} containing the metadata list.
@@ -11,7 +12,7 @@
 #' @importFrom stringr str_replace_all str_detect str_split str_trim fixed
 #' @importFrom data.table fread
 #' @export
-read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
+read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE, ...) {
 
   if ( (! data) & (! metadata) ) {
     stop("Neither data nor metadata is requested. I'm left doing nothing...")
@@ -26,7 +27,8 @@ read_pid <- function(file, data=TRUE, metadata=FALSE, verbose=FALSE) {
     # get line number where the data table starts
     dataIdx <- which(str_detect(d, fixed("[Data]")))
     # read data table
-    dt <- fread(str_c(d, collapse="\n"), skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE)
+    dt <- fread(str_c(d, collapse="\n"), skip=dataIdx, sep=";", header=TRUE, verbose=FALSE, data.table=FALSE, ...)
+    # TODO check which is faster: scan + fread all text; scan 2000 lines + fread all file
     names(dt) <- make.names(names(dt))
     names(dt)[1] <- "Item"
 

@@ -53,7 +53,7 @@ read_particles_profiles <- function(project, ...) {
       # parse the date
       d$date_time <- str_replace(d$date_time, "\t", "")
       d$date_time <- str_replace(d$date_time, "_", ".")
-      d$date_time <- parse_date_time(d$date_time, orders="ymdhms")
+      d$date_time <- parse_date_time(d$date_time, orders="YmdHMS")
 
       # select relevant variables
       d <- d[,c("id", "date_time", "depth", "concentration", "esd", "mean_grey")]

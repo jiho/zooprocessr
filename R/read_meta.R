@@ -126,7 +126,7 @@ read_meta_in_project.uvp5 <- function(project, from.dat1=FALSE) {
   }
 
   # parse dates
-  m$datetime <- parse_date_time(as.character(m$filename), orders="ymdhms")
+  m$datetime <- parse_date_time(as.character(m$filename), orders="YmdHMS")
 
   # homogenise names between uvp and zooscan
   m$id <- m$profileid
